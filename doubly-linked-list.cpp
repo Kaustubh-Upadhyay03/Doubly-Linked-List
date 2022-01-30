@@ -87,6 +87,7 @@ void DoublyLinkedList::print() const
     Node* temp = head_;
     for(int i = 0; i < size_; i++)
     {
+        cout << i <<" == " <<temp->value << endl; 
         temp = temp->next;
     }
 }
@@ -195,9 +196,17 @@ bool DoublyLinkedList::remove(unsigned int index)
     {
         return false;
     }
+    else if (size_ == 1)
+    {
+        remove_front();
+    }
     else if(index >= size_)
     {
         return false;
+    }    
+    else if(index == size_ - 1)
+    {
+        remove_back();
     }
     else
     {
@@ -212,9 +221,10 @@ bool DoublyLinkedList::remove(unsigned int index)
 
             N1->next = N2;
             N2->prev = N1;
-        }
-        size_--;
-        return true;
+            size_--;
+            return true;
+        }      
+        
     }
 }
 
